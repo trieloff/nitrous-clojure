@@ -10,3 +10,17 @@ RUN \
   curl http://zbyedidia.webfactional.com/micro/binaries/micro-linux64.tar.gz | tar -C /opt/ -zxv && ln -s /opt/micro/micro /usr/local/bin/
   
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
+EXPOSE 3000
+ENV NITROUS_PREVIEW_PORT 3000
+EXPOSE $NITROUS_PREVIEW_PORT
+
+RUN \
+  mkdir -p /home/nitrous/.lein
+  
+COPY files/profiles.clj /home/nitrous/.lein/profiles.clj
+
+RUN \
+  /bin/bash -c 'chown -R $NITROUS_USERNAME:$NITROUS_USERNAME /home/nitrous/.lein'
+  
+USER root
