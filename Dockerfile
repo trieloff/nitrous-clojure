@@ -15,6 +15,8 @@ EXPOSE 3000
 ENV NITROUS_PREVIEW_PORT 3000
 EXPOSE $NITROUS_PREVIEW_PORT
 
+ENV TERM xterm-256color
+
 RUN \
   mkdir -p /home/nitrous/.lein
   
